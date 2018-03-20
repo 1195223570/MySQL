@@ -8,6 +8,8 @@ mysql -u root -p 登陆数据库
     DROP DATABASE mydata;//删除数据库
     //查看数据库引擎
      SHOW ENGINES \G   \G结尾让显示结果更加美观
+   //删除数据库
+   DROP DATABASE database_name;
 
 
 
