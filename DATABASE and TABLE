@@ -19,7 +19,9 @@ Columns列
 Indexes索引
 Triggers触发器
     //展示表格
-    SHOW TABLE;
+    SHOW TABLES;
+    //查看表自定义
+    SHOW CREATE TABLE table_name;
     //创建表格
     CREATE TABLE mytable(
     id int ,
@@ -55,7 +57,78 @@ Triggers触发器
     //修改字段的顺序
     ALTER TABLE table_name CHANGE 属性名1 数据类型 FIRST|AFTER 属性名2;
     
+操作表的约束
+
+    NOT NULL            约束字段的值不能为空
+    DEFAULT             设置字段的默认值
+    UNIQUE KEY(UK)      约束字段的值唯一
+    PRIMARY KEY(PK)     约束字段为主键，可以作为该表记录的唯一标识
+    AUTO_INCREMENT      约束字段的值为自动增加
+    FOREING KEY(FK)     约束字段为表的外键
     
+    1 设置非空约束
+        CREATE TABLE mytable1(
+            id INT(20) NOT NULL,//设置非空约束
+            mname VARCHAR(20),
+            loc VARCHAR(40)
+        );
+    2 设置字段默认值
+        CREATE TABLE mytable1(
+            id INT(20) ,
+            mname VARCHAR(20),
+            sex VARCHAR(20) DEFAULT '男',//设置字段默认值
+            loc VARCHAR(40)
+        );
+    3 设置唯一约束
+         CREATE TABLE mytable1(
+            id INT(20) ,
+            mname VARCHAR(20) UNIQUE,//设置唯一约束
+            sex VARCHAR(20) ,
+            loc VARCHAR(40)
+        );
+    4 设置单主键约束
+         CREATE TABLE mytable1(
+            id INT(20) PRIMARY KEY,//设置主键约束
+            mname VARCHAR(20),
+            sex VARCHAR(20),
+            loc VARCHAR(40)
+        );
+    5 设置多主键约束
+         CREATE TABLE mytable1(
+            id INT(20) ,
+            mname VARCHAR(20),
+            sex VARCHAR(20),
+            loc VARCHAR(40),
+            CONSTRAINT pk_id_mname PRIMARY KEY(id,mname) //pk_id_mname 主键名称
+        );
     
+    6 设置字段值自动增加  
+          CREATE TABLE mytable1(
+            id INT(20) PRIMARY KEY AUTO_INCREMENT,
+            mname VARCHAR(20),
+            sex VARCHAR(20),
+            loc VARCHAR(40),
+        );
+        
+    7 设置外键约束
     
-    
+          CREATE TABLE t_dept(
+              deptno INT PRIMARY KEY,
+              dname VARCHAR(20),
+              loc VARCHAR(40)
+          );
+          
+          CREATE TABLE t_employee(
+                empno INT PRIMARY KEY,
+                ename VARCHAR(20),
+                job VARCHAR(40),
+                MGR INT,
+                Hiredate DATE,
+                sal DOUBLE(10,2),
+                comn DOUBLE(10,2),
+                deptno INT,
+                CONSTRAINT fk_deptno FOREIGN KEY(deptno)
+                    REFERENCES t_dept(deptno)
+          );
+        //CONSTRAINT fk_deptno(外键名称) FOREIGN KEY(deptno)(属性名)
+                REFERENCES t_dept(deptno)(关联表名与属性名)
