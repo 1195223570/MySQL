@@ -1,0 +1,61 @@
+net start mysql启动数据库
+mysql -u root -p 登陆数据库
+
+##CREATE DATABASE//创建数据库
+    CREATE DATABASE mydata; //add database
+    SHOW DATABASES;
+    USE mydata;//选择数据库
+    DROP DATABASE mydata;//删除数据库
+    //查看数据库引擎
+     SHOW ENGINES \G   \G结尾让显示结果更加美观
+
+
+
+表格操作
+
+
+##CREAT TABLE  //创建表格
+Columns列
+Indexes索引
+Triggers触发器
+    //展示表格
+    SHOW TABLE;
+    //创建表格
+    CREATE TABLE mytable(
+    id int ,
+    name varchar(20),
+    email varchar(50)
+    );
+    //查看表定义
+    describle mytable;
+    //查看表详细定义
+    SHOW CREATE TABLE mytable;
+    DROP TABLE mytable; //删除表格
+    
+    //修改表名
+    ALTER TABLE old_table_name RENAME (TO) new_table_name;
+   
+   //增加字段
+    ALTER TABLE table_name ADD 属性名 属性类型;
+    //在表的第一个位置增加字段
+    ALTER TABLE table_name ADD 属性名 属性类型 FIRST;
+    //在表的指定字段后增加字段
+    ALTER TABLE table_name ADD 属性名 属性类型 AFTER 属性名;
+   
+   //删除字段
+    ALTER TABLE table_name DROP 属性名 ;
+    
+    //修改字段
+    //修改字段属性
+    ALTER TABLE table_name MODIFY 属性名 数据类型;
+    //修改字段
+    ALTER TABLE table_name MODIFY 旧属性名 新属性名 旧数据类型;
+    //同时修改字段属性，属性名
+    ALTER TABLE table_name MODIFY 旧属性名 新属性名 新数据类型;
+    //修改字段的顺序
+    ALTER TABLE table_name MODIFY 属性名1 数据类型 FIRST|AFTER 属性名2;
+    
+    
+    
+    
+    
